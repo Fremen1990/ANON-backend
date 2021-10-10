@@ -1,0 +1,31 @@
+{
+  "name": "anon-backend",
+  "version": "1.0.0",
+  "description": "\"# ANON-backend\"",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fremen1990/ANON-backend.git"
+  },
+  "keywords": [],
+  "author": "DevThomas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Fremen1990/ANON-backend/issues"
+  },
+  "homepage": "https://github.com/Fremen1990/ANON-backend#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-validator": "^5.3.1",
+    "mongoose": "^6.0.10",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.13",
+    "uuid": "^8.3.2"
+  }
+}
