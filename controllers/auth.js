@@ -47,7 +47,7 @@ exports.signin = (req, res) => {
     })
 };
 
-exports.signout = (req,res)=>{
+exports.signout = (req, res) => {
     res.clearCookie('t');
     res.json({message: "Signout sucess"});
 };
@@ -58,3 +58,18 @@ exports.requireSignin = expressJwt({
     algorithms: ["HS256"], // added later
     userProperty: "auth",
 });
+
+exports.isAuth = (req, res, next) => {
+    let user = req.profile && req.auth && req.profile._id ==  req.auth._id;
+    if (!user) {
+        return res.status(403).json({error: "Access denied"})
+    }
+    next();
+}
+
+exports.isAdmin = (req, res, next) => {
+    if (req.profile.access == 0) {
+        return res.status(403).json({error: "Admin resourse! Access denied."});
+    }
+    next();
+}
