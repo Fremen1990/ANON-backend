@@ -1,0 +1,3 @@
+cd COOL\ PROJECTS/ANON/ANON-Full-Stack-Project/ANON-Back-End/anon-backend/
+
+   TODO this is location for LINUX
