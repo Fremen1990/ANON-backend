@@ -10,11 +10,11 @@ require('dotenv').config()
 const authRoutes = require('./routes/auth')
 const userRoutes = require('./routes/user')
 const categoryRoutes = require('./routes/category')
+const articleRoutes = require('./routes/article')
 
 
 //app
 const app = express();
-
 
 //database
 mongoose.connect(process.env.DATABASE, {}).then(() => console.log("DB Connected"))
@@ -29,6 +29,7 @@ app.use(expressValidator());
 app.use('/api', authRoutes);
 app.use('/api', userRoutes);
 app.use('/api', categoryRoutes);
+app.use('/api', articleRoutes);
 
 
 //defining port
