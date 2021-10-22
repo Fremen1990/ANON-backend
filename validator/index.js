@@ -4,7 +4,7 @@ exports.userSignupValidator = (req, res, next) => {
         // .matches(/.+\@.+\..+/)
         // Better email validation REGEX
         .matches(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
-        .withMessage("Email us not in the proper form")
+        .withMessage("Email is not in the proper form")
         .isLength({
             min: 5, max: 32
         })
