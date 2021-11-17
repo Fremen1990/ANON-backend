@@ -61,6 +61,9 @@ exports.create = (req, res) => {
 
 exports.remove = (req, res) => {
   let article = req.article;
+
+  console.log("-------------++++++++++++++ \n");
+  console.log(article);
   article.remove((err, deletedArticle) => {
     if (err) {
       return res.status(400).json({
@@ -69,7 +72,7 @@ exports.remove = (req, res) => {
     }
     res.json({
       // deletedArticle,
-      message: "Article deleted successfully",
+      message: `${deletedArticle} - Article deleted successfully`,
     });
   });
 };
