@@ -251,3 +251,21 @@ exports.listSearch = (req, res) => {
     }).select("-photo");
   }
 };
+
+
+//This will find the articles based on the article category
+exports.listRelatedCategory = (req, res) => {
+  let limit = req.query.limit ? parseInt(req.query.limit) : 3;
+
+  Article.find({  categoryFind})
+      .limit(limit)
+      .populate("category", "_id name")
+      .exec((err, articles) => {
+        if (err) {
+          return res.status(400).json({
+            error: "Articles not found",
+          });
+        }
+        res.json(articles);
+      });
+};
