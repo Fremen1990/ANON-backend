@@ -10,6 +10,7 @@ const {
   remove,
   update,
   list,
+  listByCategory,
   listSearch,
   listRelated,
   listRelatedCategory,
@@ -34,9 +35,10 @@ router.delete(
 router.put("/article/:articleId/:userId", requireSignin, isAuth, update);
 
 router.get("/articles", list);
+router.get("/articles/byCategory/:categoryId", listByCategory);
 router.get("/articles/search", listSearch);
 router.get("/articles/related/:articleId", listRelated);
-router.get("/articles/related/:categoryId", listRelatedCategory);
+router.get("/articles/byCategory/:categoryId", listRelatedCategory);
 router.get("/articles/categories", listCategories);
 router.post("/articles/by/search", listBySearch);
 router.get("/article/photo/:articleId", photo);

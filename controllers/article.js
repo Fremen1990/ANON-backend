@@ -140,12 +140,36 @@ exports.list = (req, res) => {
     });
 };
 
+//This will find the articles based on the article category
+exports.listByCategory = (req, res) => {
+  let order = req.query.order ? req.query.order : "asc";
+  let sortBy = req.query.sortBy ? req.query.sortBy : "_id";
+  let limit = req.query.limit ? parseInt(req.query.limit) : 6;
+
+  Article.find({ category: req.url.substring(21, 45) })
+    .select("-photo")
+    .sort([[sortBy, order]])
+    .limit(limit)
+    .populate("category")
+
+    .exec((err, articles) => {
+      if (err) {
+        return res.status(400).json({
+          error: "Articles not found",
+        });
+      }
+      res.json(articles);
+      // console.log(req.url.substring(21,45))
+    });
+};
+
 //This will find the articles based on the request product category
 // Other articles with the same category will be returned
 exports.listRelated = (req, res) => {
   let limit = req.query.limit ? parseInt(req.query.limit) : 3;
 
   Article.find({ _id: { $ne: req.article }, category: req.article.category })
+    .select("-photo")
     .limit(limit)
     .populate("category", "_id name")
     .exec((err, articles) => {
@@ -252,20 +276,19 @@ exports.listSearch = (req, res) => {
   }
 };
 
-
 //This will find the articles based on the article category
 exports.listRelatedCategory = (req, res) => {
   let limit = req.query.limit ? parseInt(req.query.limit) : 3;
 
-  Article.find({  categoryFind})
-      .limit(limit)
-      .populate("category", "_id name")
-      .exec((err, articles) => {
-        if (err) {
-          return res.status(400).json({
-            error: "Articles not found",
-          });
-        }
-        res.json(articles);
-      });
+  Article.find({ category: req.article.category })
+    .limit(limit)
+    .populate("category")
+    .exec((err, articles) => {
+      if (err) {
+        return res.status(400).json({
+          error: "Articles not found",
+        });
+      }
+      res.json(articles);
+    });
 };
