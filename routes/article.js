@@ -14,6 +14,7 @@ const {
   listSearch,
   listRelated,
   listRelatedCategory,
+  listRelatedCategoryPublished,
   listCategories,
   listBySearch,
   photo,
